@@ -1,0 +1,14 @@
+### Hellow word
+GET http://127.0.0.1:5000/hello
+
+
+###
+POST http://127.0.0.1:5000/payments/pix
+Content-Type: application/json
+
+{
+  "value": 960
+}
+
+###Rota pra gerar o Qr_code
+GET http://127.0.0.1:5000/payments/pix/qr_code/qr_code_payment_09f87141-4658-4a29-9f28-4dce3600dd4e
