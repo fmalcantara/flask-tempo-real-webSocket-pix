@@ -2,12 +2,12 @@
 GET http://127.0.0.1:5000/hello
 
 
-###
+###Criar pagamento
 POST http://127.0.0.1:5000/payments/pix
 Content-Type: application/json
 
 {
-  "value": 960
+  "value": 17000
 }
 
 ###Rota pra gerar o Qr_code
