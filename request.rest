@@ -7,8 +7,19 @@ POST http://127.0.0.1:5000/payments/pix
 Content-Type: application/json
 
 {
-  "value": 15000
+  "value": 2000
 }
 
 ###Rota pra gerar o Qr_code
 GET http://127.0.0.1:5000/payments/pix/qr_code/qr_code_payment_09f87141-4658-4a29-9f28-4dce3600dd4e
+
+
+
+###Pix Confirmation
+POST http://127.0.0.1:5000/payments/pix/confirmation
+Content-Type: application/json
+
+{
+  "bank_paid_id": "312dae5f-5d0f-4a91-b148-896544bf002a",
+  "value": 1000
+}
