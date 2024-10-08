@@ -34,7 +34,7 @@ def create_payment_pix():
   return jsonify({"message": "The payments has ben created!", 
                   "payment": new_payment.to_dict()})
 
-#Rot para mostrar o qr_code pro usuario
+#Rota para mostrar o qr_code pro usuario
 @app.route("/payments/pix/qr_code/<file_name>", methods=['GET'])
 def get_image(file_name):
   return send_file(f"static/img/{file_name}.png", mimetype='image/png')
@@ -68,6 +68,9 @@ def pix_confirmation():
 def payment_pix_page(payment_id):
   payment = Payment.query.get(payment_id)
  
+  if not payment:
+    return render_template("404.html")
+ 
   if payment.paid:
     return render_template('confirmed_payment.html',
                            payment_id=payment.id, 
@@ -82,10 +85,13 @@ def payment_pix_page(payment_id):
                      
                          )
 #websocket
-@socketio.on('connection')
+@socketio.on('connect')
 def handle_connect():
   print("Client connection to the server")
 
+@socketio.on('disconnect')
+def handle_connect():
+  print("Client has disconnect to the server")
 
 if __name__ == "__main__":
    socketio.run(app, debug=True)
